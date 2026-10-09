@@ -1,9 +1,16 @@
+import 'dart:nativewrappers/_internal/vm/lib/ffi_native_type_patch.dart';
+
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 
+
+
+
 class MovieListing extends StatelessWidget {
   const MovieListing({super.key});
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +36,27 @@ class MovieListing extends StatelessWidget {
 
           Text('15:30'),
           Text('17:30'),
-          Text('19:30')
+          Text('19:30'),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.teal,
+              foregroundColor: Colors.white,
+            ),
+            onPressed: _addTicket,
+            child: const Text('Add'),
+          ),
+          
+          
+          
+
+          
+
         ],
-      )),
+      )
+      
+      
+      
+      ),
     );
   }
 }
