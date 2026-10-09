@@ -15,7 +15,23 @@ class MovieListing extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-      body: const SizedBox.shrink(),
+      body: Container(
+        color: cinemaBackground,
+          child: Column(
+        children: [
+          Text(
+            "Godzilla 2019",
+            style: TextStyle(color: cinemaBrand, fontSize: 50),
+            
+          ),
+          Text("Bookings Availabel :"
+          ,style: TextStyle(fontSize: 30),),
+
+          Text('15:30'),
+          Text('17:30'),
+          Text('19:30')
+        ],
+      )),
     );
   }
 }
