@@ -8,6 +8,7 @@ class Movie {
   final String ageRating;
   final String screeningTime;
   final String price;
+  final String poster;
   
   const Movie({
     required this.id,
@@ -17,5 +18,7 @@ class Movie {
     required this.ageRating,
     required this.screeningTime,
     required this.price,
+    required this.poster,
+
   });
 }
