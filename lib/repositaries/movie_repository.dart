@@ -13,7 +13,7 @@ class MovieRepository {
         ageRating: 'M for Mature',
         screeningTime: 'Sunday 20 oct 20:30',
         price: '4 - Pounds',
-        poster: 'assets\images\MV5BY2U5YTJmNWMtYTAxMS00YmI3LThjNzYtN2FjY2MyMTdhMDdmXkEyXkFqcGc@._V1_.jpg',
+        poster: 'assets/images/Big_G_poster.jpg',
 
       ),
       Movie(
@@ -24,7 +24,7 @@ class MovieRepository {
         ageRating: 'M for Mature',
         screeningTime: 'Saturday 19 oct 20:30',
         price: '5 - Pounds',
-        poster: 'assets\images\71w58zkWnfL._AC_UF894,1000_QL80_.jpg'
+        poster: 'assets/images/chainsaw_poster.jpg'
       )
     
     ];
