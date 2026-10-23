@@ -33,5 +33,15 @@ void main(){
 
 
     });
+
+    test('getmovieById returns matching movie when id exists', (){
+      final MovieRepository repository = MovieRepository();
+      final Movie? movie = repository.getMovieById('01');
+
+      expect(movie, isNotNull);
+      expect(movie?.name, 'Godzilla King of Monsters(2019)');
+      expect(movie?.price, 4);
+
+    });
   });
 }
