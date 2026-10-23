@@ -3,6 +3,7 @@ import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/repositaries/movie_repository.dart';
 import 'package:southsea_cinema/widgets/movie_card.dart';
+import 'package:southsea_cinema/models/movie.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -12,8 +13,8 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final repository = MovieRepository();
-    final movies = repository.getMovies();
-    final bigG = movies[0];
+    final List<Movie> movies = repository.getMovies();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -25,25 +26,13 @@ class HomeView extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-      body:  Center(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Welcome my boi to $appTitle',
-                style: TextStyle(
-                  color: cinemaFontWhite,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              MovieCard(movie: bigG)
-            ],
-          ),
-        ),
+      body:  ListView.builder(
+        itemCount: 2,
+        itemBuilder: (context, index) {
+          return MovieCard(movie: movies[index]);
+        }
       ),
+      
     );
   }
 }

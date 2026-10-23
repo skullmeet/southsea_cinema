@@ -10,26 +10,47 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 8.0),
+     
+      color : cinemaBackground,
+      margin: EdgeInsets.symmetric(horizontal: 60.0,vertical: 38.0),
       child : Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: EdgeInsets.all(10.0),
+        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           Title(color: cinemaBrandDark, child: Text(movie.name)),
+            // title and age ratingf
+            
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Title(color: cinemaBrandDark, child: Text(style : TextStyle(color: cinemaBrandDark, fontSize: 30,fontWeight : FontWeight.bold), movie.name)),
+                const SizedBox(width: 10,),
+                Text(style : TextStyle(color: cinemaFontWhite),movie.ageRating)
+                  ]
+                ),
+           
+           const SizedBox(height: 20,),
+           //poster an dsynopsis
            Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(movie.poster, width: 50,height: 50,fit: BoxFit.cover),
-              Text(movie.synopsis)
+              Image.asset(movie.poster, width: 120,height: 180,fit: BoxFit.cover),
+              const SizedBox(width: 20),
+              Expanded(child: Text(style : TextStyle(color: cinemaFontWhite,fontSize: 20),movie.synopsis) )
+              
             ]
            ),
-           Text('BOOK TICKETS NOW!!'),
+           const SizedBox(height: 20,),
+           Text(style: TextStyle(color: cinemaFontWhite,fontSize: 20),'BOOK TICKETS NOW!!'),
+           const SizedBox(height: 20,),
+           //date and order button
            Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(movie.screeningTime),
-              Text('Buttun here')
+              Text(style : TextStyle(color: cinemaFontWhite,fontSize: 20),movie.screeningTime),
+              const SizedBox(width: 50,),
+              Text(style : TextStyle(color: cinemaFontWhite),'Buttun here')
             ],
            )
           ],
