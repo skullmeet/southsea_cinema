@@ -61,7 +61,7 @@ class MovieCard extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => MovieListing(movie: movie))
                   );
               },
-              style: ElevatedButton.styleFrom(backgroundColor: cinemaBackground)
+              style: ElevatedButton.styleFrom(backgroundColor: cinemaBrand, shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero))
               , child: Text(style: TextStyle(color: cinemaBackground),'Book Now!!'),)
             ],
            )
