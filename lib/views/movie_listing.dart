@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/widgets/nav_drawer.dart';
-
+import 'package:southsea_cinema/models/movie.dart';
 
 
 class TicketCounter extends StatefulWidget {
@@ -51,7 +51,8 @@ class _TicketCounterState extends State<TicketCounter> {
 
 
 class MovieListing extends StatelessWidget {
-  const MovieListing({super.key});
+  final Movie movie;
+  const MovieListing({super.key,required this.movie});
   
 
 
@@ -68,21 +69,15 @@ class MovieListing extends StatelessWidget {
       body: Container(
         color: cinemaBackground,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Godzilla(2019)",
-            style: TextStyle(color: cinemaBrand, fontSize: 50),
-            
-          ),
-          Text("Bookings Availabel :"
-          ,style: TextStyle(fontSize: 30),),
-          
-          Text('SouthSea Cinema Room : 3'),
-          Text('Note that all discounts have been cancelled over new store policy. For further details seek out the company website',style: TextStyle(fontSize : 8),),
-         
-          Text('15:30'),
-          Text('17:30'),
-          Text('19:30'),
+          Text(movie.name, style: TextStyle(color: cinemaFontWhite, fontSize: 30),),
+          Text(movie.ageRating, style: TextStyle(color: cinemaFontWhite, fontSize: 30),),
+          Image.asset(movie.poster, width: 120,height: 180,fit: BoxFit.cover),
+          Text(movie.venue, style: TextStyle(color: cinemaFontWhite, fontSize: 30),),
+          Text(movie.screeningTime, style: TextStyle(color: cinemaFontWhite, fontSize: 30),),
+          Text(movie.synopsis, style: TextStyle(color: cinemaFontWhite, fontSize: 30),),
+          Text(movie.price, style: TextStyle(color: cinemaFontWhite, fontSize: 30),),
           TicketCounter(),
           
            
