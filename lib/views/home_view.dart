@@ -8,10 +8,8 @@ import 'package:southsea_cinema/models/movie.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
-
     final repository = MovieRepository();
     final List<Movie> movies = repository.getMovies();
 
@@ -26,13 +24,11 @@ class HomeView extends StatelessWidget {
         elevation: 0,
       ),
       drawer: const NavDrawer(),
-      body:  ListView.builder(
-        itemCount: 2,
-        itemBuilder: (context, index) {
-          return MovieCard(movie: movies[index]);
-        }
-      ),
-      
+      body: ListView.builder(
+          itemCount: 2,
+          itemBuilder: (context, index) {
+            return MovieCard(movie: movies[index]);
+          }),
     );
   }
 }

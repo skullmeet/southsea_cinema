@@ -1,20 +1,18 @@
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void main(){
-  group('Movie model test', (){
-    test('Create a movie instance with given properties', (){
+void main() {
+  group('Movie model test', () {
+    test('Create a movie instance with given properties', () {
       const movie = Movie(
-        id: '03',
-        name: 'SOmething something good movie',
-        synopsis: 'stuff and stuff',
-        venue: 'place and place',
-        price: 10,
-        ageRating: 'M for mature',
-        screeningTime: 'couple of hours',
-        poster: 'poster'
-        
-      );
+          id: '03',
+          name: 'SOmething something good movie',
+          synopsis: 'stuff and stuff',
+          venue: 'place and place',
+          price: 10,
+          ageRating: 'M for mature',
+          screeningTime: 'couple of hours',
+          poster: 'poster');
 
       expect(movie.id, '03');
       expect(movie.name, 'SOmething something good movie');

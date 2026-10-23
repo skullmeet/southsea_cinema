@@ -10,7 +10,7 @@ void main() {
 
 class SouthseaCinemaApp extends StatelessWidget {
   const SouthseaCinemaApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,7 +27,8 @@ class SouthseaCinemaApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeView(),
-        '/listing': (context) =>  MovieListing(movie: MovieRepository().getMovies().first  ),
+        '/listing': (context) =>
+            MovieListing(movie: MovieRepository().getMovies().first),
       },
     );
   }
