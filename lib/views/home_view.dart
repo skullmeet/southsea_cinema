@@ -25,7 +25,7 @@ class HomeView extends StatelessWidget {
       ),
       drawer: const NavDrawer(),
       body: ListView.builder(
-          itemCount: 2,
+          itemCount: movies.length,
           itemBuilder: (context, index) {
             return MovieCard(movie: movies[index]);
           }),
