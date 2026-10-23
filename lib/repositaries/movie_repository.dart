@@ -12,7 +12,7 @@ class MovieRepository {
         synopsis: 'Godzilla Returns to now face a threat\n that roams the entire planet and Lords\n over storms An ancient rivalry resurfaced by\n a new threat to the survival of humanity',
         ageRating: '(12A)',
         screeningTime: 'Sunday 20 oct 20:30',
-        price: '4 - Pounds',
+        price: 4,
         poster: 'assets/images/Big_G_poster.jpg',
 
       ),
@@ -23,7 +23,7 @@ class MovieRepository {
         synopsis: 'Watch Denji encounter the captivating\n and dangerous Reze, a girl of many mysteries \nthat brings disaster and tears alike in\n the continuing heartbreaking story of Chainsawman',
         ageRating: '(18A)',
         screeningTime: 'Saturday 19 oct 20:30',
-        price: '5 - Pounds',
+        price: 5,
         poster: 'assets/images/chainsaw_poster.jpg'
       )
     

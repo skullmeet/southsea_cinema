@@ -89,7 +89,7 @@ class BookingCard extends StatelessWidget {
            //ticket counter and price
            
            const SizedBox(height: 20,),
-            Text(style : TextStyle(color: cinemaFontWhite,fontSize: 20),movie.price) ,
+            Text(style : TextStyle(color: cinemaFontWhite,fontSize: 20),movie.formattedprice) ,
            Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -7,7 +7,7 @@ class Movie {
   final String synopsis;
   final String ageRating;
   final String screeningTime;
-  final String price;
+  final double price;
   final String poster;
   
   const Movie({
@@ -21,4 +21,6 @@ class Movie {
     required this.poster,
 
   });
+
+  String get formattedprice => '£${price.toStringAsFixed(2)}';
 }
