@@ -36,6 +36,7 @@ class _TicketCounterState extends State<TicketCounter> {
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         PrimaryButton(onPressed: _increment, label: 'Add Ticket'),
+        const SizedBox(height: 20,),
         SecondaryButton(onPressed: _reset,label: 'Reset'),
       ],
     );
