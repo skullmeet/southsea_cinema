@@ -1,6 +1,7 @@
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:southsea_cinema/widgets/primary_button.dart';
 
 class TicketCounter extends StatefulWidget {
   const TicketCounter({super.key});
@@ -34,13 +35,8 @@ class _TicketCounterState extends State<TicketCounter> {
           '$_count',
           style: Theme.of(context).textTheme.headlineLarge,
         ),
-        ElevatedButton(onPressed: _increment, child: const Text('Add Ticket')),
-        ElevatedButton(
-            onPressed: _reset,
-            style: ElevatedButton.styleFrom(
-                backgroundColor: cinemaFontMuted,
-                foregroundColor: cinemaFontWhite),
-            child: const Text('Reset'))
+        PrimaryButton(onPressed: _increment, label: 'Add Ticket'),
+        SecondaryButton(onPressed: _reset,label: 'Reset'),
       ],
     );
   }
