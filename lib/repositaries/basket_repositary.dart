@@ -22,7 +22,7 @@ class BasketRepositary {
     }
   }
 
-  int getTotal() {
+  int getTotalItems() {
     int total = 0 ;
     for (final BasketItem item in _items){
       total += item.quantaty;
@@ -43,6 +43,11 @@ class BasketRepositary {
       return 0.0;
     }
     return 4.0;
+  }
+
+  double getTotalDue()  {
+    double costFinal = getSubTotal() + getServiceCharge();
+    return costFinal;
   }
 
   void clearItems() {
