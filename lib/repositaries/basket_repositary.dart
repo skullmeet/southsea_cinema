@@ -1,4 +1,4 @@
-import 'package:southsea_cinema/models/basketItem.dart';
+import 'package:southsea_cinema/models/basket_item.dart';
 
 class BasketRepositary {
   BasketRepositary._internal();
@@ -18,7 +18,7 @@ class BasketRepositary {
 
   void removeItem(int index) {
     if (index >= 0 && index < _items.length){
-      _items.remove(index);
+      _items.removeAt(index);
     }
   }
 
