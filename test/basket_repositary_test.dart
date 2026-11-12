@@ -52,9 +52,22 @@ void main() {
 
 
       expect(basket.getItems().length, 2);
-        expect(basket.getTotalItems(), 2);
-        expect(basket.getServiceCharge(), 4);
-        expect(basket.getTotalDue(), 0);
+      expect(basket.getTotalItems(), 3);
+      expect(basket.getServiceCharge(), 4);
+      expect(basket.getSubTotal(), 15);
+      expect(basket.getTotalDue(), 19);
+    });
+
+    test('remove itemsproperly', (){
+      final BasketRepositary basket = BasketRepositary.instance;
+      const BasketItem item1 = BasketItem(basketedMovie: dummymovie, quantaty: 1);
+      basket.addItem(item1);
+
+      expect(basket.getTotalItems(), 1);
+
+      basket.removeItem(0);
+      expect(basket.getTotalItems(), 0);
+      expect(basket.getTotalDue(), 0);
 
 
     });

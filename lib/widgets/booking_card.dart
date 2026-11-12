@@ -1,10 +1,22 @@
+
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
+import 'package:southsea_cinema/models/basket_item.dart';
+import 'package:southsea_cinema/repositaries/basket_repositary.dart';
+
+
+
+
+
 
 class TicketCounter extends StatefulWidget {
   const TicketCounter({super.key});
+
+
+  
+
 
   @override
   State<TicketCounter> createState() => _TicketCounterState();
@@ -47,6 +59,18 @@ class BookingCard extends StatelessWidget {
   final Movie movie;
 
   const BookingCard({super.key, required this.movie});
+
+
+  void addToBasket(int quantat){
+    if(quantat <=0){
+      return;
+    }
+
+    BasketItem item = BasketItem(basketedMovie: movie, quantaty: quantat);
+    BasketRepositary.instance.addItem(item);
+    
+  }
+
 
   @override
   Widget build(BuildContext context) {
