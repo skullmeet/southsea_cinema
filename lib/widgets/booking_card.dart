@@ -8,34 +8,17 @@ import 'package:southsea_cinema/repositaries/basket_repositary.dart';
 
 
 
+class TicketCounter extends StatelessWidget {
+  final int count;
+  final VoidCallback onIncrement;
+  final VoidCallback onReset;
 
-
-
-class TicketCounter extends StatefulWidget {
-  const TicketCounter({super.key});
-
-
-  
-
-
-  @override
-  State<TicketCounter> createState() => _TicketCounterState();
-}
-
-class _TicketCounterState extends State<TicketCounter> {
-  int _count = 0;
-
-  void _increment() {
-    setState(() {
-      _count++;
-    });
-  }
-
-  void _reset() {
-    setState(() {
-      _count = 0;
-    });
-  }
+  const TicketCounter({
+    super.key,
+    required this.count,
+    required this.onIncrement,
+    required this.onReset,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,32 +26,42 @@ class _TicketCounterState extends State<TicketCounter> {
       mainAxisSize: MainAxisSize.min,
       children: [
         const Text('Tickets in cart'),
-        Text(
-          '$_count',
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        PrimaryButton(onPressed: _increment, label: 'Add Ticket'),
-        const SizedBox(height: 20,),
-        SecondaryButton(onPressed: _reset,label: 'Reset'),
+        Text('$count', style: Theme.of(context).textTheme.headlineLarge),
+        PrimaryButton(onPressed: onIncrement, label: 'Add Ticket'),
+        const SizedBox(height: 20),
+        SecondaryButton(onPressed: onReset, label: 'Reset'),
       ],
     );
   }
 }
 
-class BookingCard extends StatelessWidget {
+class BookingCard extends StatefulWidget {
   final Movie movie;
-
   const BookingCard({super.key, required this.movie});
 
+  @override
+  State<BookingCard> createState() => _BookingCardState();
+}
 
-  void addToBasket(int quantat){
-    if(quantat <=0){
+class _BookingCardState extends State<BookingCard>{
+
+
+  int _count = 0;
+
+  void _increment() => setState(() => _count++);
+  void _reset() => setState(() => _count = 0);
+
+  void _addToBasket(){
+    if(_count <=0){
       return;
     }
 
-    BasketItem item = BasketItem(basketedMovie: movie, quantaty: quantat);
+    BasketItem item = BasketItem(basketedMovie: widget.movie, quantaty: _count);
     BasketRepositary.instance.addItem(item);
-    
+    setState(() {
+      _count = 0;
+    });
+
   }
 
 
@@ -90,32 +83,32 @@ class BookingCard extends StatelessWidget {
                             color: cinemaFontWhite,
                             fontSize: 30,
                             fontWeight: FontWeight.bold),
-                        movie.name)),
+                          widget.movie.name)),
                 const SizedBox(
                   width: 10,
                 ),
-                Text(style: TextStyle(color: cinemaFontWhite), movie.ageRating),
+                Text(style: TextStyle(color: cinemaFontWhite), widget.movie.ageRating),
                 const SizedBox(
                   height: 20,
                 ),
 
                 //poster and details
-                Image.asset(movie.poster,
+                Image.asset(widget.movie.poster,
                     width: 120, height: 180, fit: BoxFit.cover),
                 const SizedBox(height: 20),
                 Text(
                     style: TextStyle(color: cinemaFontWhite, fontSize: 20),
-                    movie.venue),
+                    widget.movie.venue),
                 const SizedBox(height: 20),
                 Text(
                     style: TextStyle(color: cinemaFontWhite, fontSize: 20),
-                    movie.screeningTime),
+                    widget.movie.screeningTime),
                 const SizedBox(height: 20),
 
                 //synopsis
                 Text(
                     style: TextStyle(color: cinemaFontWhite, fontSize: 20),
-                    movie.synopsis),
+                    widget.movie.synopsis),
 
                 //ticket counter and price
 
@@ -124,14 +117,18 @@ class BookingCard extends StatelessWidget {
                 ),
                 Text(
                     style: TextStyle(color: cinemaFontWhite, fontSize: 20),
-                    movie.formattedprice),
+                    widget.movie.formattedprice),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       width: 50,
                     ),
-                    TicketCounter()
+                    TicketCounter(count: _count, onIncrement: _increment, onReset: _reset),
+                    PrimaryButton(onPressed: _addToBasket, label: 'Add To Basket!!'),                   
+                   
+                    
+
                   ],
                 )
               ],
