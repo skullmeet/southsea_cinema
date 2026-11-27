@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/models/user_settings.dart';
 import 'package:southsea_cinema/widgets/primary_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences_platform_interface/in_memory_shared_preferences_async.dart';
+import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
+
+const String prefEmail = 'user_email';
+const String prefAddress = 'user_address';
+const String prefPatron = 'user_patron_number';
+const String prefNews = 'user_news';
+
+
+
 
 class SettingsView extends StatefulWidget {
   const SettingsView({super.key});
-
-
-
-
-  
+    
   @override
   State<SettingsView> createState() {
     return _SettingsViewState();
@@ -52,10 +60,15 @@ class _SettingsViewState extends State<SettingsView>{
 
   }
 
-  void _saveSettings(){
+  Future<void> _saveSettings() async {
     final String address = _addressController.text.trim();
     final String patronNumber = _patronNumberController.text.trim();
     final String email = _emailController.text.trim();
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    await prefs.setString(prefPatron, patronNumber);
+    await prefs.setString(prefAddress, address);
+    await prefs.setString(prefEmail, email);
+    await prefs.setBool(prefNews, _receiveNews);
 
     final userSettings settings = userSettings(
       address: address,
@@ -64,14 +77,56 @@ class _SettingsViewState extends State<SettingsView>{
       receiveNews: _receiveNews,
 
     );
-
     setState(() {
+          if (!mounted) {
+      return;
+    }
       _confirmationMessage = 'Settings Saved for ${settings.patronNumber}';
     });
   }
 
   @override
   Widget build(BuildContext context) {
+      Future<void> _loadSettings() async {
+    final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+    final String? savedPatron = await prefs.getString(prefPatron);
+    final String? savedAddress = await prefs.getString(prefAddress);
+    final String? savedEmail = await prefs.getString(prefEmail);
+    final bool? savedNews = await prefs.getBool(prefNews);
+
+    String patron = '';
+    if (savedPatron != null) {
+      patron = savedPatron;
+    }
+
+    String address = '';
+    if (savedAddress != null) {
+      address = savedAddress;
+    }
+
+    String email = '';
+    if (savedEmail != null) {
+      email = savedEmail;
+    }
+    bool news = false;
+    if (savedNews != null) {
+      news = savedNews;
+    }
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _patronNumberController.text = patron;
+      _addressController.text = address;
+      _emailController.text = email;
+      _receiveNews = news;
+    });
+  }
+
+
+
+
+
     return Scaffold(
         appBar: AppBar(
           title: const Text(appTitle, style: cinemaHeaderStyle),
