@@ -2,7 +2,6 @@
 
 import 'dart:nativewrappers/_internal/vm/lib/ffi_native_type_patch.dart';
 
-import 'package:flutter/foundation.dart';
 
 class Movie {
   final String id;
@@ -25,10 +24,10 @@ class Movie {
     required this.poster,
   });
 
-  String get formattedprice => '£${price.toStringAsFixed(2)}';
-}
+  
 
-factory movie.fromJson(Map<String, dynamic> json) {
+
+factory Movie.fromJson(Map<String, dynamic> json) {
   final String id = json['id'] as String;
   final String name = json['name'] as String;
   final String synopsis = json['synopsis'] as String;
@@ -38,6 +37,25 @@ factory movie.fromJson(Map<String, dynamic> json) {
   final Double price = json['price'] as Double;
   final String poster = json['poster'] as String;
 
-  return Movie(id: id, name: name, venue: venue, synopsis: synopsis, ageRating: ageRating, screeningTime: screeningTime, price: price, poster: poster);
+  return Movie(id: id, name: name, venue: venue, synopsis: synopsis,
+   ageRating: ageRating, screeningTime: screeningTime,
+    price: double.parse(json['price'] as String), poster: json['poster'] as String);
+}
+
+String get formattedprice => '£${price.toStringAsFixed(2)}';
+
+Map<String , dynamic> toJson() {
+  final Map<String, dynamic> data = <String, dynamic>{
+    'id' : id,
+    'name' : name,
+    'synopsis'  : synopsis,
+    'price' : price,
+    'poster' : poster
+  };
+  return data;
+}
+
+
+
 
 }
