@@ -30,6 +30,7 @@ class TicketCounter extends StatelessWidget {
         PrimaryButton(onPressed: onIncrement, label: 'Add Ticket'),
         const SizedBox(height: 20),
         SecondaryButton(onPressed: onReset, label: 'Reset'),
+        
       ],
     );
   }
@@ -125,12 +126,18 @@ class _BookingCardState extends State<BookingCard>{
                       width: 50,
                     ),
                     TicketCounter(count: _count, onIncrement: _increment, onReset: _reset),
-                    PrimaryButton(onPressed: _addToBasket, label: 'Add To Basket!!'),                   
+                                       
                    
                     
 
                   ],
-                )
+                ),
+                SizedBox(height: 20,),
+                Row(children: [
+                  SizedBox(width: 50,),
+                  PrimaryButton(onPressed: _addToBasket, label: 'Add To Basket!!')
+                ],)
+                
               ],
             )));
   }
