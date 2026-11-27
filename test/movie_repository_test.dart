@@ -3,6 +3,8 @@ import 'package:southsea_cinema/models/movie.dart';
 import 'package:southsea_cinema/repositaries/movie_repository.dart';
 
 void main() {
+
+  TestWidgetsFlutterBinding.ensureInitialized();
   group('Movie test units', () {
     test('getMovie returns 2 movies', () {
       final MovieRepository repository = MovieRepository();
@@ -42,6 +44,17 @@ void main() {
       final Movie? movie = repository.getMovieById('dummy');
 
       expect(movie, isNull);
+    });
+
+     test('loadSandwichesFromAsset reads the bundled JSON menu', () async {
+      final MovieRepository repository = MovieRepository();
+      final List<Movie> movie =
+          await repository.loadMoviesFromAsset();
+
+      expect(movie[0].name, 'Godzilla King of Monsters(2019)');
+      expect(movie[0].id, '01');
+      expect(movie[1].id, '02');
+      expect(repository.getMovies(), movie);
     });
   });
 }

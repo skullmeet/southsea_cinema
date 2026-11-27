@@ -24,4 +24,26 @@ void main() {
       expect(movie.poster, 'poster');
     });
   });
+
+  test('Json conversion presevrves every movie field',() {
+    final Map<String, dynamic> data = <String , dynamic>{
+      'id' : 'x',
+      'name' : 'x',
+      'price' : 0.0,
+      'venue' : 'x',
+      'synopsis' : 'x',
+      'poster' : 'x',
+      'ageRating' : 'x',
+      'screeningTime' : 'x'
+    };
+    final Movie movie = Movie.fromJson(data);
+    expect(movie.id ,'x');
+    expect(movie.name, 'x');
+    expect(movie.synopsis, 'x');
+    expect(movie.venue, 'x');
+    expect(movie.ageRating, 'x');
+    expect(movie.screeningTime, 'x');
+    expect(movie.price, 0.0);
+    expect(movie.poster, 'x');
+  });
 }
