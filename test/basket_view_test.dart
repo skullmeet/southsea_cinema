@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:southsea_cinema/constants.dart';
 import 'package:southsea_cinema/repositaries/basket_repositary.dart';
-import 'package:southsea_cinema/widgets/nav_drawer.dart';
 import 'package:southsea_cinema/models/basket_item.dart';
-import 'package:southsea_cinema/widgets/primary_button.dart';
 import 'package:southsea_cinema/models/movie.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:southsea_cinema/views/basket_view.dart';
